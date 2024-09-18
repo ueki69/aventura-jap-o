@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aventura no Japão</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    #container {
+      background-color: white;
+      border: 2px solid #ccc;
+      padding: 20px;
+      width: 80%;
+      max-width: 800px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #storyText {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    #sceneImage {
+      width: 100%;
+      height: auto;
+      max-height: 400px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      font-size: 16px;
+      background-color: #7e2757;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #choices {
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1>Aventura no Japão</h1>
+    <div id="storyText">
+      Você está em frente a um antigo templo japonês nas montanhas. A atmosfera é misteriosa e silenciosa. O que você fará?
+    </div>
+    <img id="sceneImage" src="https://i.pinimg.com/originals/03/e1/d3/03e1d3538a37f81161da7fcda166fb3b.gif" alt="Templo Japonês" />
+    <div id="choices">
+      <button onclick="choosePath('explorar o templo')">Explorar o templo</button>
+      <button onclick="choosePath('descer até a vila')">Descer até a vila</button>
+      <button onclick="choosePath('entrar na floresta')">Entrar na floresta</button>
+    </div>
+  </div>
+
+  <script>
+    function choosePath(option) {
+      const storyText = document.getElementById('storyText');
+      const sceneImage = document.getElementById('sceneImage');
+
+      // Primeira camada de escolhas
+      if (option === 'explorar o templo') {
+        storyText.innerText = 'Você explora o templo e encontra um pergaminho antigo escondido sob uma estátua de um dragão dourado. O que você fará com ele?';
+        sceneImage.src = 'https://img.freepik.com/fotos-premium/antigo-fundo-de-textura-de-papel-de-pergaminho-papel-de-parede-vintage_118047-9547.jpg';
+        updateChoices('abrir o pergaminho', 'deixar o pergaminho', 'fazer uma prece');
+      } else if (option === 'descer até a vila') {
+        storyText.innerText = 'Você desce até a vila e percebe que os moradores estão em pânico por causa de um terremoto recente. Você pode ajudar de alguma forma?';
+        sceneImage.src = 'https://cloudfront-us-east-1.images.arcpublishing.com/estadao/GAMLRFQKDNAQVDTHELQNVN5ZOI.jpeg';
+        updateChoices('ajudar moradores', 'voltar para o templo', 'seguir para o mercado');
+      } else if (option === 'entrar na floresta') {
+        storyText.innerText = 'Você entra na floresta densa e silenciosa. O som de pássaros e o farfalhar das folhas trazem uma sensação de mistério. No entanto, um caminho bifurca à frente. Qual você seguirá?';
+        sceneImage.src = 'https://www.japanhousesp.com.br/sites/japanhouse.com.saopaulo/files/styles/large/public/2023-04/BANHO_FLORESTA.jpg';
+        updateChoices('seguir o caminho da esquerda', 'seguir o caminho da direita', 'voltar para o templo');
+      }
+
+      // Exploração do templo
+      else if (option === 'abrir o pergaminho') {
+        storyText.innerText = 'Ao abrir o pergaminho, um brilho dourado preenche o ambiente. Você sente uma força antiga fluindo. O que fará?';
+        sceneImage.src = 'https://img.freepik.com/fotos-premium/livro-encantado-brilhando-em-meio-a-pergaminhos-empoeirados-e-bugigangas-antigas_802668-4691.jpg';
+        updateChoices('usar o poder do pergaminho', 'destruir o pergaminho', 'consultar um sábio sobre o poder');
+      } else if (option === 'deixar o pergaminho') {
+        storyText.innerText = 'Você decide não mexer no pergaminho, mas enquanto se vira, ouve um som ecoando pelo templo. Algo ou alguém está observando você. O que fará?';
+        sceneImage.src = 'https://www.munhecaviajera.com/wp-content/uploads/21-4.jpg';
+        updateChoices('investigar o som', 'sair imediatamente do templo', 'continuar explorando o templo');
+      } else if (option === 'fazer uma prece') {
+        storyText.innerText = 'Você faz uma prece no templo e sente uma paz profunda. Um monge aparece e oferece-lhe sabedoria. Ele lhe pergunta se deseja aprender os segredos do templo ou seguir seu caminho.';
+        sceneImage.src = 'https://st2.depositphotos.com/1980693/10646/i/450/depositphotos_106465152-stock-photo-japnese-monk-at-kiyomizu-dera.jpg';
+        updateChoices('ficar no templo e aprender', 'seguir seu caminho', 'falar mais com o monge');
+      }
+
+      // Desfechos do pergaminho
+      else if (option === 'usar o poder do pergaminho') {
+        storyText.innerText = 'Ao usar o poder do pergaminho, uma energia intensa percorre seu corpo, mas também atrai forças sombrias. Agora você deve decidir se usará essa força para o bem ou para o mal.';
+        sceneImage.src = 'power.jpg';
+        updateChoices('usar o poder para o bem', 'usar o poder para o mal', 'renunciar ao poder e destruí-lo');
+      } else if (option === 'destruir o pergaminho') {
+        storyText.innerText = 'Você destrói o pergaminho, libertando o templo de seu poder. No entanto, ao fazer isso, você desperta um espírito antigo que estava preso. O que fará?';
+        sceneImage.src = 'spirit.jpg';
+        updateChoices('enfrentar o espírito', 'fugir do templo', 'tentar selar o espírito novamente');
+      }
+
+      // Caminhos na floresta
+      else if (option === 'seguir o caminho da esquerda') {
+        storyText.innerText = 'O caminho da esquerda leva a um lago cristalino. A água parece sobrenatural e, ao se aproximar, uma criatura mística emerge da água. O que você fará?';
+        sceneImage.src = 'https://squared-potato.pt/wp-content/uploads/2023/05/kappa-yokai-cultura-japonesa.jpg';
+        updateChoices('falar com a criatura', 'sair do lago e voltar', 'entrar no lago');
+      } else if (option === 'seguir o caminho da direita') {
+        storyText.innerText = 'O caminho da direita leva a uma clareira onde uma antiga árvore com símbolos mágicos está. A árvore parece pulsar com energia. O que fará?';
+        sceneImage.src = 'https://i0.wp.com/followthecolours.com.br/wp-content/uploads/2016/02/oldest-wisteria-tree-ashikaga-japan-2.jpg?w=1200';
+        updateChoices('tocar a árvore mágica', 'voltar para o caminho principal', 'acampar na clareira');
+      }
+
+      // Vila e mercado
+      else if (option === 'ajudar moradores') {
+        storyText.innerText = 'Você ajuda os moradores a reconstruir suas casas. Em gratidão, eles lhe oferecem abrigo. Um ancião conta sobre uma caverna sagrada nas montanhas. Você decide explorá-la?';
+        sceneImage.src = 'https://thumbs.dreamstime.com/b/entrada-do-jardim-japon%C3%AAs-com-abrigo-coberto-cerca-de-bambu-janela-e-escultura-pedra-245938367.jpg';
+        updateChoices('explorar a caverna', 'voltar para a vila', 'seguir para o mercado');
+      } else if (option === 'seguir para o mercado') {
+        storyText.innerText = 'No mercado, você vê uma multidão reunida em torno de um samurai que faz uma demonstração de sua técnica. Você se aproxima e ele lhe dá um olhar profundo. O que fará?';
+        sceneImage.src = 'https://res.cloudinary.com/hello-tickets/image/upload/c_limit,f_auto,q_auto,w_1300/v1666066499/syabnadtbbc5c9v9zkr3.jpg';
+        updateChoices('falar com o samurai', 'assistir à demonstração', 'voltar para a vila');
+      }
+
+      // Finalizações de diferentes caminhos
+      else if (option === 'usar o poder para o bem') {
+        storyText.innerText = 'Você decide usar o poder para ajudar as pessoas ao seu redor. Com o tempo, você se torna um herói lendário, conhecido por seus feitos e sabedoria. O povo do Japão sempre lembrará de você.';
+        sceneImage.src = 'hero.jpg';
+        updateChoices('recomeçar a aventura');
+      } else if (option === 'usar o poder para o mal') {
+        storyText.innerText = 'Ao usar o poder para o mal, você espalha caos e destruição. No entanto, o poder consome sua alma e, eventualmente, você se torna uma sombra do que foi, amaldiçoado para sempre.';
+        sceneImage.src = 'evil.jpg';
+        updateChoices('recomeçar a aventura');
+      } else if (option === 'enfrentar o espírito') {
+        storyText.innerText = 'Você decide enfrentar o espírito com coragem. A batalha é intensa, mas você consegue selá-lo novamente. Agora, o templo está seguro e você parte como um verdadeiro guerreiro.';
+        sceneImage.src = 'battle.jpg';
+        updateChoices('recomeçar a aventura');
+      }
+
+      // Outros desfechos
+      else if (option === 'falar com a criatura') {
+        storyText.innerText = 'A criatura do lago revela segredos antigos sobre o mundo. Com sua sabedoria, você retorna à civilização como um grande estudioso. Sua vida será dedicada ao conhecimento.';
+        sceneImage.src = 'https://theasiancinemacritic.com/wp-content/uploads/2016/09/coo5.jpg?w=863&h=0&crop=1';
+        updateChoices('recomeçar a aventura');
+      } else if (option === 'tocar a árvore mágica') {
+        storyText.innerText = 'Ao tocar a árvore mágica, você absorve seu poder, ganhando habilidades místicas. Agora, você tem o poder da natureza ao seu dispor. O que fará com isso depende de você.';
+        sceneImage.src = 'https://png.pngtree.com/thumb_back/fw800/background/20230117/pngtree-person-harnessing-mystical-powers-amidst-majestic-mountain-ranges-in-fantasy-and-anime-renderings-photo-image_49238042.jpg';
+        updateChoices('recomeçar a aventura');
+      }
+    }
+
+    function updateChoices(choice1, choice2, choice3) {
+      document.getElementById('choices').innerHTML = `
+        <button onclick="choosePath('${choice1}')">${choice1}</button>
+        <button onclick="choosePath('${choice2}')">${choice2}</button>
+        <button onclick="choosePath('${choice3}')">${choice3}</button>
+      `;
+    }
+  </script>
+</body>
+</html>
